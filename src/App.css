@@ -1,0 +1,24 @@
+.btn-menu {
+  font-size: 2rem;
+  border-radius: calc(2rem * 1.5);
+  margin: 2rem 0;
+  padding: 1rem 0;
+  min-width: 270px;
+}
+
+.menu {
+  height: 100vh;
+  margin: 0 20%;
+}
+
+@media screen and (max-width: 992px) {
+  .menu {
+    margin: 0 10%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .menu {
+    margin: 0;
+  }
+}
