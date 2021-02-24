@@ -1,18 +1,44 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
-import { prefix } from '../../config';
+import { prefix, alertTimeout } from '../../config';
+import { v4 as uuidv4 } from 'uuid';
 
 import { connect } from 'react-redux';
-import { setName } from '../../actions/userActions';
+import { setName, clearUser } from '../../actions/userActions';
+import { removeAlert, setAlert } from '../../actions/alertActions';
 import PropTypes from 'prop-types';
 
-const NameForm = ({ user: { name }, setName }) => {
+import Alerts from '../layout/alert/Alerts';
+
+const NameForm = ({
+  user: { name },
+  setName,
+  clearUser,
+  setAlert,
+  removeAlert
+}) => {
   const onChange = (e) => {
-    name = e.target.value;
+    setName(e.target.value);
+  };
+
+  const checkForm = (e) => {
+    if (name === '') {
+      e.preventDefault();
+      const alert = {
+        id: uuidv4(),
+        msg: 'Please insert your name',
+        type: 'danger'
+      };
+      setAlert(alert);
+      setTimeout(() => removeAlert(alert), alertTimeout);
+    }
   };
   return (
-    <div className='menu d-flex flex-column justify-content-center align-items-center'>
+    <Fragment>
+      <div className='name-alert'>
+        <Alerts />
+      </div>
       <Form className='bg-primary name-form'>
         <Form.Group controlId='name'>
           <Form.Label>Name:</Form.Label>
@@ -20,10 +46,15 @@ const NameForm = ({ user: { name }, setName }) => {
             type='text'
             className='form-rounded'
             onChange={onChange}
+            value={name}
           />
         </Form.Group>
         <div className='d-flex justify-content-between px'>
-          <Link to={`${prefix}/`} className='btn btn-danger btn-rounded'>
+          <Link
+            to={`${prefix}/`}
+            className='btn btn-danger btn-rounded'
+            onClick={clearUser}
+          >
             Back
           </Link>
           <Link
@@ -31,23 +62,31 @@ const NameForm = ({ user: { name }, setName }) => {
             type='submit'
             className='btn btn-success btn-rounded'
             style={{ width: '11rem' }}
-            onClick={(e) => setName(name)}
+            onClick={checkForm}
           >
             Let's Go
           </Link>
         </div>
       </Form>
-    </div>
+    </Fragment>
   );
 };
 
 NameForm.propTypes = {
   user: PropTypes.object.isRequired,
-  setName: PropTypes.func.isRequired
+  setName: PropTypes.func.isRequired,
+  clearUser: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
+  removeAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps, { setName })(NameForm);
+export default connect(mapStateToProps, {
+  setName,
+  clearUser,
+  setAlert,
+  removeAlert
+})(NameForm);

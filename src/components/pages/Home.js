@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { prefix } from '../../config';
 import title from '../../img/title.png';
-import {  connect } from 'react-redux';
-import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const Home = () => {
   useEffect(() => {
@@ -17,7 +17,7 @@ const Home = () => {
         <img src={title} alt='I am Smarticus' />
       </div>
       <Link
-        to={`${prefix}/quiz`}
+        to={`${prefix}/name`}
         className='btn btn-primary btn-block btn-menu'
       >
         Start Quiz

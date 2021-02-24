@@ -45,7 +45,8 @@ body {
   border-radius: 1.5rem;
 }
 
-.name-form .form-rounded {
+.name-form .form-rounded,
+.name-alert {
   width: 350px;
 }
 
@@ -74,7 +75,8 @@ body {
     width: 100%;
   }
 
-  .name-form {
+  .name-form,
+  .name-alert {
     width: 75%;
     padding: 2rem;
   }
@@ -82,7 +84,8 @@ body {
 
 /* md */
 @media screen and (max-width: 768px) {
-  .name-form {
+  .name-form,
+  .name-alert {
     width: 100%;
   }
 }
@@ -93,7 +96,8 @@ body {
     margin: 0;
   }
 
-  .name-form {
+  .name-form,
+  .name-alert {
     width: 90%;
   }
 
@@ -104,7 +108,8 @@ body {
 
 /* custom */
 @media screen and (max-width: 450px) {
-  .name-form {
+  .name-form,
+  .name-alert {
     width: 100%;
     padding: 1rem;
   }
