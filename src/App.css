@@ -1,3 +1,24 @@
+body {
+  min-height: 100vh;
+  background-color: #32bbad;
+  background-image: url('./img/gb1.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+#bb1 {
+  background-image: url('./img/bb1.png');
+}
+
+#gb1 {
+  background-image: url('./img/gb1.png');
+}
+
+#gb2 {
+  background-image: url('./img/gb2.png');
+}
+
 .btn-menu {
   font-size: 2rem;
   border-radius: calc(2rem * 1.5);
@@ -6,19 +27,85 @@
   min-width: 270px;
 }
 
+.btn-menu:hover {
+  color: #fff;
+}
+
 .menu {
   height: 100vh;
   margin: 0 20%;
 }
 
+.btn-rounded {
+  border-radius: 1.5rem;
+  min-width: 6rem;
+}
+
+.form-rounded {
+  border-radius: 1.5rem;
+}
+
+.name-form .form-rounded {
+  width: 350px;
+}
+
+.name-form {
+  padding: 3rem;
+  border-radius: 2rem;
+  min-width: 250px;
+}
+
+#title-img-container {
+  width: 135%;
+}
+
+#title-img-container img {
+  width: 100%;
+  height: auto;
+}
+
+/* lg */
 @media screen and (max-width: 992px) {
   .menu {
     margin: 0 10%;
   }
+
+  .name-form .form-rounded {
+    width: 100%;
+  }
+
+  .name-form {
+    width: 75%;
+    padding: 2rem;
+  }
 }
 
+/* md */
+@media screen and (max-width: 768px) {
+  .name-form {
+    width: 100%;
+  }
+}
+
+/* xs */
 @media screen and (max-width: 576px) {
   .menu {
     margin: 0;
+  }
+
+  .name-form {
+    width: 90%;
+  }
+
+  #title-img-container {
+    width: 100%;
+  }
+}
+
+/* custom */
+@media screen and (max-width: 450px) {
+  .name-form {
+    width: 100%;
+    padding: 1rem;
   }
 }
