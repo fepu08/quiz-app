@@ -3,8 +3,10 @@ import {
   ADD_QUESTION,
   UPDATE_QUESTION,
   DELETE_QUESTION,
+  SET_CURRENT_QUESTION,
   CLEAR_CURRENT_QUESTION,
-  QUESTIONS_ERROR
+  QUESTIONS_ERROR,
+  SEARCH_QUESTION
 } from './types';
 import { my_json_server } from '../config';
 
@@ -82,6 +84,23 @@ export const updateQuestion = (question) => async (dispatch) => {
     dispatch({
       type: UPDATE_QUESTION,
       payload: question
+    });
+  } catch (err) {
+    dispatch({
+      type: QUESTIONS_ERROR,
+      payload: err.response.statusText
+    });
+  }
+};
+
+export const searchQuestion = (text) => async (dispatch) => {
+  try {
+    setLoading();
+    const res = await fetch(`${my_json_server}/questions?q=${text}`);
+    const data = await res.json();
+    dispatch({
+      type: SEARCH_QUESTION,
+      payload: data
     });
   } catch (err) {
     dispatch({
