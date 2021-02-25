@@ -1,146 +1,105 @@
 import {
   GET_QUESTIONS,
-  CREATE_QUESTION,
+  ADD_QUESTION,
   UPDATE_QUESTION,
-  REMOVE_QUESTION,
-  CLEAR_QUESTION
+  DELETE_QUESTION,
+  CLEAR_CURRENT_QUESTION,
+  QUESTIONS_ERROR
 } from './types';
+import { my_json_server } from '../config';
 
 export const getQuestions = () => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch(
-      'https://my-json-server.typicode.com/fepu08/issue-logger/logs'
-    );
+    const res = await fetch(`${my_json_server}/questions`);
     const data = await res.json();
     dispatch({
-      type: GET_LOGS,
+      type: GET_QUESTIONS,
       payload: data
     });
   } catch (err) {
     dispatch({
-      type: LOGS_ERROR,
+      type: QUESTIONS_ERROR,
       payload: err.response.statusText
     });
   }
 };
 
-// Add new Log
-export const addLog = (log) => async (dispatch) => {
+export const addQuestion = (question) => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch(
-      'https://my-json-server.typicode.com/fepu08/issue-logger/logs',
-      {
-        method: 'POST',
-        body: JSON.stringify(log),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    const res = await fetch(`${my_json_server}/questions`, {
+      method: 'POST',
+      body: JSON.stringify(question),
+      headers: {
+        'Content-Type': 'application/json'
       }
-    );
+    });
     const data = await res.json();
     dispatch({
-      type: ADD_LOG,
+      type: ADD_QUESTION,
       payload: data
     });
   } catch (err) {
     dispatch({
-      type: LOGS_ERROR,
+      type: QUESTIONS_ERROR,
       payload: err.response.statusText
     });
   }
 };
 
-//Delete Log from server
-export const deleteLog = (id) => async (dispatch) => {
+export const deleteQuestion = (id) => async (dispatch) => {
   try {
     setLoading();
-    await fetch(
-      `https://my-json-server.typicode.com/fepu08/issue-logger/logs/${id}`,
-      {
-        method: 'DELETE'
-      }
-    );
+    await fetch(`${my_son_server}/questions/${id}`, {
+      method: 'DELETE'
+    });
 
     dispatch({
-      type: DELETE_LOG,
+      type: DELETE_QUESTION,
       payload: id
     });
   } catch (err) {
     dispatch({
-      type: LOGS_ERROR,
+      type: QUESTIONS_ERROR,
       payload: err.response.statusText
     });
   }
 };
 
-//Update Log on server
-export const updateLog = (log) => async (dispatch) => {
+export const updateQuestion = (question) => async (dispatch) => {
   try {
     setLoading();
-    const res = await fetch(
-      `https://my-json-server.typicode.com/fepu08/issue-logger/logs/${log.id}`,
-      {
-        method: 'PUT',
-        body: JSON.stringify(log),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    const res = await fetch(`${my_json_server}/questions/${question.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(question),
+      headers: {
+        'Content-Type': 'application/json'
       }
-    );
+    });
 
     const data = await res.json();
     dispatch({
-      type: UPDATE_LOG,
-      payload: log
+      type: UPDATE_QUESTION,
+      payload: question
     });
   } catch (err) {
     dispatch({
-      type: LOGS_ERROR,
+      type: QUESTIONS_ERROR,
       payload: err.response.statusText
     });
   }
 };
 
-//Search server logs
-export const searchLogs = (text) => async (dispatch) => {
-  try {
-    setLoading();
-    const res = await fetch(
-      `https://my-json-server.typicode.com/fepu08/issue-logger/logs?q=${text}`
-    );
-    const data = await res.json();
-    dispatch({
-      type: SEARCH_LOGS,
-      payload: data
-    });
-  } catch (err) {
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.response.statusText
-    });
-  }
-};
-
-// Set current
-export const setCurrent = (log) => {
+export const setCurrent = (question) => {
   return {
-    type: SET_CURRENT,
-    payload: log
+    type: SET_CURRENT_QUESTION,
+    payload: question
   };
 };
 
-// Clear current
 export const clearCurrent = () => {
   return {
-    type: CLEAR_CURRENT
-  };
-};
-
-// set loading to true
-export const setLoading = () => {
-  return {
-    type: SET_LOADING
+    type: CLEAR_CURRENT_QUESTION
   };
 };
