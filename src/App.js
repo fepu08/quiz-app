@@ -13,18 +13,12 @@ const App = () => {
   return (
     <Router>
       <Container>
-        <div className='menu d-flex flex-column justify-content-center align-items-center'>
-          <Switch>
-            <Route exact path={`${prefix}/`} component={Home} />
-            <Route exact path={`${prefix}/name`} component={NameForm} />
-            <Route
-              exact
-              path={`${prefix}/leaderboard`}
-              component={Leaderboard}
-            />
-            <Route exact path={`${prefix}/questions`} component={Questions} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={`${prefix}/`} component={Home} />
+          <Route exact path={`${prefix}/name`} component={NameForm} />
+          <Route exact path={`${prefix}/leaderboard`} component={Leaderboard} />
+          <Route exact path={`${prefix}/questions`} component={Questions} />
+        </Switch>
       </Container>
     </Router>
   );

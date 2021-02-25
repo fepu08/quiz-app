@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react';
 
 const Questions = () => {
   useEffect(() => {
@@ -9,6 +9,7 @@ const Questions = () => {
   return (
     <div>
       <h1>Questions</h1>
+      {/* map Questions */}
       <ul>
         <li>Question 1</li>
         <li>Question 2</li>
@@ -18,9 +19,10 @@ const Questions = () => {
       </ul>
       <div>
         <h3>Create new question</h3>
+        {/* Question Form */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Questions
+export default Questions;

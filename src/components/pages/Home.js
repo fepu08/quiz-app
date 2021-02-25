@@ -12,8 +12,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='menu d-flex flex-column justify-content-center align-items-center'>
-      <div id='title-img-container'>
+    <div className='menu flex-center-center-column'>
+      <div id='title-img-container' className='d-none d-sm-block'>
         <img src={title} alt='I am Smarticus' />
       </div>
       <Link

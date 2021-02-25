@@ -35,7 +35,7 @@ const NameForm = ({
     }
   };
   return (
-    <Fragment>
+    <div className='menu flex-center-center-column'>
       <div className='name-alert'>
         <Alerts />
       </div>
@@ -68,7 +68,7 @@ const NameForm = ({
           </Link>
         </div>
       </Form>
-    </Fragment>
+    </div>
   );
 };
 

@@ -19,6 +19,13 @@ body {
   background-image: url('./img/gb2.png');
 }
 
+.flex-center-center-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .btn-menu {
   font-size: 2rem;
   border-radius: calc(2rem * 1.5);
@@ -54,6 +61,10 @@ body {
   padding: 3rem;
   border-radius: 2rem;
   min-width: 250px;
+}
+
+.name-form .form-label {
+  font-size: 1.3rem;
 }
 
 #title-img-container {

@@ -1,0 +1,23 @@
+'Cmd/Ctrl+Enter' // Triggers `Todo: Toggle Box`
+'Alt+Enter' // Triggers `Todo: Toggle Box`
+'Alt+D' // Triggers `Todo: Toggle Done`
+'Alt+C' // Triggers `Todo: Toggle Cancelled`
+'Alt+S' // Triggers `Todo: Toggle Start`
+'Cmd/Ctrl+Shift+A' // Triggers  `Todo: Archive`
+
+☐ Quiz
+☐ Edit questions @started(21-02-25 09:31)
+  ☐ Question
+    ☐ Action
+    ☐ Reducer
+    ☐ Components: 
+      ☐ QuestionForm 
+        ☐ Add / Edit questions
+      ☐ QuestionItem 
+      ☐ Questions 
+
+☐ Leaderboard
+  ☐ List players w score high to low
+    ☐ Users
+    ☐ UserItem
+    ☐ The order of users
