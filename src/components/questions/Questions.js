@@ -4,6 +4,8 @@ import QuestionForm from './QuestionForm';
 import { connect } from 'react-redux';
 import { getQuestions } from '../../actions/questionActions';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { prefix } from '../../config';
 
 const Questions = ({ questions: { questions, current }, getQuestions }) => {
   useEffect(() => {
@@ -14,7 +16,14 @@ const Questions = ({ questions: { questions, current }, getQuestions }) => {
 
   return (
     <div>
-      <h1>Questions</h1>
+      <div className='d-flex justify-content-between'>
+        <h1>Questions</h1>
+        <div className='my-auto'>
+          <Link to={`${prefix}/`} className='btn btn-primary btn-rounded'>
+            Home
+          </Link>
+        </div>
+      </div>
 
       <ul className='question-list'>
         {questions !== null && questions.length !== 0 ? (
@@ -25,6 +34,9 @@ const Questions = ({ questions: { questions, current }, getQuestions }) => {
           <h3>No questions to show</h3>
         )}
       </ul>
+
+      <hr className='my-5' />
+
       <QuestionForm />
     </div>
   );

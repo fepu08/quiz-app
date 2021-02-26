@@ -1,18 +1,22 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { setCurrent, deleteQuestion } from '../../actions/questionActions';
+import {
+  setCurrent,
+  clearCurrent,
+  deleteQuestion
+} from '../../actions/questionActions';
 import PropTypes from 'prop-types';
 
 const QuestionItem = ({
-  user,
   question,
   deleteQuestion,
   setCurrent,
-  setScore
+  clearCurrent
 }) => {
   const onDelete = () => {
     deleteQuestion(question.id);
+    clearCurrent();
   };
 
   return (
@@ -48,5 +52,6 @@ QuestionItem.propTypes = {
 
 export default connect(null, {
   setCurrent,
-  deleteQuestion
+  deleteQuestion,
+  clearCurrent
 })(QuestionItem);

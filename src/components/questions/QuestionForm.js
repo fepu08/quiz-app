@@ -16,12 +16,19 @@ const QuestionForm = ({
   clearCurrent
 }) => {
   const [question, setQuestion] = useState('');
-  const [answers, setAnswers] = useState(['', '', '', '']);
+  const [answers, setAnswers] = useState([
+    { id: 1, answer: '', correct: false },
+    { id: 2, answer: '', correct: false },
+    { id: 3, answer: '', correct: false },
+    { id: 4, answer: '', correct: false }
+  ]);
 
   useEffect(() => {
     if (current) {
       setQuestion(current.question);
       setAnswers(current.answers);
+    } else {
+      clearFields();
     }
   }, [current]);
 
@@ -40,10 +47,8 @@ const QuestionForm = ({
         // ADD QUESTION
         addQuestion(newQuestion);
       }
-
       clearFields();
       clearCurrent();
-      console.log(answers[0].answer);
     } else {
       console.log('Input error');
     }
@@ -51,34 +56,44 @@ const QuestionForm = ({
 
   const setAnswerText = (id, text) => {
     let result = [...answers];
-    result[id] = text;
+    result.find((a) => a.id === id).answer = text;
     setAnswers(result);
   };
 
   const setCorrectAnswer = (id) => {
-    let result = ['', '', '', ''];
-    for (let i = 0; i < answers.length; i++) {
-      let newAnsw = {
-        answer: '',
-        correct: false
-      };
-      if (i === id) newAnsw.correct = true;
-      result[i] = newAnsw;
-    }
+    let result = [];
+    answers.map((a) => {
+      if (a.id === id) {
+        result.push({ id: a.id, answer: a.answer, correct: true });
+      } else {
+        result.push({ id: a.id, answer: a.answer, correct: false });
+      }
+    });
+    setAnswers(result);
   };
 
   const clearFields = () => {
     setQuestion('');
-    setAnswers(['', '', '', '']);
+    setAnswers([
+      { id: 1, answer: '', correct: false },
+      { id: 2, answer: '', correct: false },
+      { id: 3, answer: '', correct: false },
+      { id: 4, answer: '', correct: false }
+    ]);
   };
 
   const validateForm = () => {
-    if (question === '' || answers.length !== 4) return false;
-    answers.forEach((answer) => {
-      if (answer === '') {
+    if (!question || question === '' || !answers || answers.length !== 4)
+      return false;
+    let thereIsACorrect = false;
+    for (let i = 0; i < answers.length; i++) {
+      if (!answers[i].id) return false;
+      if (!answers[i].answer || answers[i].answer === '') return false;
+      if (answers[i].correct !== true && answers[i].correct !== false)
         return false;
-      }
-    });
+      if (answers[i].correct === true) thereIsACorrect = true;
+    }
+    if (!thereIsACorrect) return false;
     return true;
   };
 
@@ -97,95 +112,39 @@ const QuestionForm = ({
         </Col>
       </Row>
 
-      <h5 className='form-label mt-3'>Answer</h5>
-      <Row className='w-100 my-2'>
-        <Col xs>
-          <Form.Control
-            className='form-rounded'
-            type='text'
-            placeholder='Enter your answer'
-            value={answers[0].answer}
-            onChange={(e) => setAnswerText(0, e.target.value)}
-          />
-        </Col>
-        <Col xs={1}>
-          <Form.Check
-            type='radio'
-            name='right-answer'
-            id='answer0-radio'
-            value={answers[0].correct}
-            checked={answers[0].correct}
-            onChange={setCorrectAnswer(0)}
-          />
-        </Col>
-      </Row>
-      <Row className='w-100  my-2'>
-        <Col xs>
-          <Form.Control
-            className='form-rounded'
-            type='text'
-            placeholder='Enter your answer'
-            value={answers[1].answer}
-            onChange={(e) => setAnswerText(1, e.target.value)}
-          />
-        </Col>
-        <Col xs={1}>
-          <Form.Check
-            type='radio'
-            name='right-answer'
-            id='answer1-radio'
-            value={answers[1].correct}
-            checked={answers[1].correct}
-            onChange={setCorrectAnswer(1)}
-          />
-        </Col>
-      </Row>
-      <Row className='w-100  my-2'>
-        <Col xs>
-          <Form.Control
-            className='form-rounded'
-            type='text'
-            placeholder='Enter your answer'
-            value={answers[2].answer}
-            onChange={(e) => setAnswerText(2, e.target.value)}
-          />
-        </Col>
-        <Col xs={1}>
-          <Form.Check
-            type='radio'
-            name='right-answer'
-            id='answer2-radio'
-            value={answers[2].correct}
-            checked={answers[2].correct}
-            onChange={setCorrectAnswer(2)}
-          />
-        </Col>
-      </Row>
-      <Row className='w-100  my-2'>
-        <Col xs>
-          <Form.Control
-            className='form-rounded'
-            type='text'
-            placeholder='Enter your answer'
-            value={answers[3].answer}
-            onChange={(e) => setAnswerText(3, e.target.value)}
-          />
-        </Col>
-        <Col xs={1}>
-          <Form.Check
-            type='radio'
-            name='right-answer'
-            id='answer4-radio'
-            value={answers[3].correct}
-            checked={answers[3].correct}
-            onChange={setCorrectAnswer(3)}
-          />
-        </Col>
-      </Row>
+      <h5 className='form-label mt-3'>Answers</h5>
+      {/* Answers */}
+      {answers.map((a) => {
+        return (
+          <Row className='w-100 my-2' key={a.id}>
+            <Col xs>
+              <Form.Control
+                className='form-rounded'
+                type='text'
+                placeholder='Enter your answer'
+                value={a.answer}
+                onChange={(e) => setAnswerText(a.id, e.target.value)}
+              />
+            </Col>
+            <Col xs={1}>
+              <Form.Check
+                type='radio'
+                name='right-answer'
+                id='answer0-radio'
+                value={a.correct}
+                checked={a.correct}
+                onChange={() => setCorrectAnswer(a.id)}
+              />
+            </Col>
+          </Row>
+        );
+      })}
+
+      {/* Buttons */}
       <Row className='my-2'>
         <Col>
           <Button
-            variant='primary'
+            variant='danger'
             block
             className='btn-rounded'
             onClick={() => {
@@ -198,10 +157,11 @@ const QuestionForm = ({
         </Col>
         <Col>
           <Button
-            variant='success'
+            variant={!validateForm() ? 'dark' : 'success'}
             block
             className='btn-rounded'
             onClick={onSubmit}
+            disabled={!validateForm()}
           >
             Save
           </Button>
