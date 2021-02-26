@@ -6,7 +6,8 @@ import {
   SET_CURRENT_QUESTION,
   CLEAR_CURRENT_QUESTION,
   QUESTIONS_ERROR,
-  SEARCH_QUESTION
+  SEARCH_QUESTION,
+  SET_LOADING
 } from './types';
 import { my_json_server } from '../config';
 
@@ -53,7 +54,7 @@ export const addQuestion = (question) => async (dispatch) => {
 export const deleteQuestion = (id) => async (dispatch) => {
   try {
     setLoading();
-    await fetch(`${my_son_server}/questions/${id}`, {
+    await fetch(`${my_json_server}/questions/${id}`, {
       method: 'DELETE'
     });
 
@@ -95,7 +96,6 @@ export const updateQuestion = (question) => async (dispatch) => {
 
 export const searchQuestion = (text) => async (dispatch) => {
   try {
-    setLoading();
     const res = await fetch(`${my_json_server}/questions?q=${text}`);
     const data = await res.json();
     dispatch({
@@ -120,5 +120,11 @@ export const setCurrent = (question) => {
 export const clearCurrent = () => {
   return {
     type: CLEAR_CURRENT_QUESTION
+  };
+};
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING
   };
 };
