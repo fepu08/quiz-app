@@ -1,23 +1,15 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
-import { prefix, alertTimeout } from '../../config';
-import { v4 as uuidv4 } from 'uuid';
-
+import { prefix } from '../../config';
 import { connect } from 'react-redux';
 import { setName, clearUser } from '../../actions/userActions';
-import { removeAlert, setAlert } from '../../actions/alertActions';
+import { setAlert } from '../../actions/alertActions';
 import PropTypes from 'prop-types';
 
 import Alerts from '../layout/alert/Alerts';
 
-const NameForm = ({
-  user: { name },
-  setName,
-  clearUser,
-  setAlert,
-  removeAlert
-}) => {
+const NameForm = ({ user: { name }, setName, clearUser, setAlert }) => {
   const onChange = (e) => {
     setName(e.target.value);
   };
@@ -26,12 +18,10 @@ const NameForm = ({
     if (name === '') {
       e.preventDefault();
       const alert = {
-        id: uuidv4(),
         msg: 'Please insert your name',
         type: 'danger'
       };
       setAlert(alert);
-      setTimeout(() => removeAlert(alert), alertTimeout);
     }
   };
   return (
@@ -76,8 +66,7 @@ NameForm.propTypes = {
   user: PropTypes.object.isRequired,
   setName: PropTypes.func.isRequired,
   clearUser: PropTypes.func.isRequired,
-  setAlert: PropTypes.func.isRequired,
-  removeAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -87,6 +76,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   setName,
   clearUser,
-  setAlert,
-  removeAlert
+  setAlert
 })(NameForm);
