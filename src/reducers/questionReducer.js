@@ -6,13 +6,15 @@ import {
   DELETE_QUESTION,
   SET_CURRENT_QUESTION,
   CLEAR_CURRENT_QUESTION,
-  QUESTIONS_ERROR
+  QUESTIONS_ERROR,
+  SET_LOADING
 } from '../actions/types';
 
 const initialState = {
   questions: null,
   current: null,
-  error: null
+  error: null,
+  loading: false
 };
 
 export default (state = initialState, action) => {
@@ -65,6 +67,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action.payload
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
       };
     default:
       return state;
