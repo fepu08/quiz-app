@@ -23,7 +23,7 @@ const Home = ({
   const onClick = (e) => {
     if (noQuestions()) {
       e.preventDefault();
-      setAlert(alert);
+      setAlert({ msg: 'There are no Questions', type: 'danger' });
     }
   };
 
@@ -37,7 +37,9 @@ const Home = ({
       <div id='title-img-container' className='d-none d-sm-block'>
         <img src={title} alt='I am Smarticus' />
       </div>
-      <Alerts />
+      <div className='home-alerts'>
+        <Alerts />
+      </div>
       <Link
         to={`${prefix}/name`}
         className='btn btn-primary btn-block btn-menu'
