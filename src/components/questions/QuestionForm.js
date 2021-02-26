@@ -7,7 +7,6 @@ import {
   clearCurrent
 } from '../../actions/questionActions';
 import PropTypes from 'prop-types';
-import { validate } from 'uuid';
 
 const QuestionForm = ({
   current,
