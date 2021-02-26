@@ -14,7 +14,7 @@ const Quiz = ({
 }) => {
   return (
     <Container fluid>
-      <Row className='my-3'>
+      <Row className='mb-5'>
         {/* The Question */}
         <Col className='quiz-item'>{question}</Col>
       </Row>
