@@ -5,18 +5,22 @@
       "question": "How to create new React application in the current directory?",
       "answers": [
         {
+          "id": 1,
           "answer": "npx create-react-app .",
           "correct": true
         },
         {
+          "id": 2,
           "answer": "npx create-react-app curr",
           "correct": false
         },
         {
+          "id": 3,
           "answer": "npx create-app here",
           "correct": false
         },
         {
+          "id": 4,
           "answer": "npx create-react-app-here",
           "correct": false
         }
@@ -24,22 +28,52 @@
     },
     {
       "id": 2,
-      "question": "2*10+3*2-1",
+      "question": "1+1",
       "answers": [
         {
-          "answer": 45,
+          "id": 1,
+          "answer": "2",
           "correct": true
         },
         {
-          "answer": 42,
+          "id": 2,
+          "answer": "1",
           "correct": false
         },
         {
-          "answer": 52,
+          "id": 3,
+          "answer": "3",
           "correct": false
         },
         {
-          "answer": 33,
+          "id": 4,
+          "answer": "4",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "1*1",
+      "answers": [
+        {
+          "id": 1,
+          "answer": "1",
+          "correct": true
+        },
+        {
+          "id": 2,
+          "answer": "2",
+          "correct": false
+        },
+        {
+          "id": 3,
+          "answer": "3",
+          "correct": false
+        },
+        {
+          "id": 4,
+          "answer": "4",
           "correct": false
         }
       ]
