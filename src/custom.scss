@@ -3,7 +3,8 @@ $theme-colors: (
   'primary': #ffd361,
   'secondary': #a1c6e5,
   'danger': #ff6a7c,
-  'success': #8ed000
+  'success': #8ed000,
+  'info': #0091d6
 );
 // import bootstrap style at the bottom!
 @import '~bootstrap/scss/bootstrap.scss';
