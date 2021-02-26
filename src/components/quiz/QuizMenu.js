@@ -63,13 +63,13 @@ const QuizMenu = ({
             </Button>
           ) : (
             <div>
-              <Link
+              {/* <Link
                 to={`${prefix}/leaderboard`}
                 className='btn btn-info btn-rounded mr-1 mr-sm-3'
                 onClick={onExit}
-              >
+              > 
                 Leader Board
-              </Link>
+              </Link> */}
               <Link
                 to={`${prefix}/`}
                 className='btn btn-primary btn-rounded'

@@ -53,12 +53,12 @@ const Home = ({
       >
         Edit Questions
       </Link>
-      <Link
+      {/* <Link
         to={`${prefix}/leaderboard`}
         className='btn btn-danger btn-block btn-menu'
       >
         Leader Board
-      </Link>
+      </Link> */}
     </div>
   );
 };
