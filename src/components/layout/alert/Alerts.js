@@ -8,9 +8,7 @@ const Alerts = ({ alerts }) => {
     <Fragment>
       {alerts !== undefined &&
         alerts.length > 0 &&
-        alerts.map((alert) => (
-          <AlertItem key={alert.id} msg={alert.msg} type={alert.type} />
-        ))}
+        alerts.map((alert) => <AlertItem key={alert.id} alert={alert} />)}
     </Fragment>
   );
 };
